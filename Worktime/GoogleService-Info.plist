@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>526656387884-s6856c7iiq9p0tne5irfpjlnht6fttvb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.526656387884-s6856c7iiq9p0tne5irfpjlnht6fttvb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyApcI3cwjzsFu-AFW8pCRJ8BYhiHylrVYU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>526656387884</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gancarczykkamil.Worktime</string>
+	<key>PROJECT_ID</key>
+	<string>worktime-eab27</string>
+	<key>STORAGE_BUCKET</key>
+	<string>worktime-eab27.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:526656387884:ios:b634692907d6b965</string>
+	<key>DATABASE_URL</key>
+	<string>https://worktime-eab27.firebaseio.com</string>
+</dict>
+</plist>

@@ -23,7 +23,7 @@ class CustomButton : UIButton {
     
     private func customizeButton() {
         
-        setTitleColor(UIColor.white, for: .normal)
+        setTitleColor(UIColor.black, for: .normal)
         //        backgroundColor = UIColor(red: 0/255.0, green: 153.0/255.0, blue: 255.0/255.0, alpha: 1.0)
         titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 20)
         layer.cornerRadius = frame.size.height/2

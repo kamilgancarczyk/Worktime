@@ -1,0 +1,6 @@
+framework module Pods_Worktime_WorktimeUITests {
+  umbrella header "Pods-Worktime-WorktimeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

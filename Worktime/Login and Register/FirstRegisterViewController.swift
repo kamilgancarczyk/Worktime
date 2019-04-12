@@ -10,6 +10,12 @@ import UIKit
 
 class FirstRegisterViewController: UIViewController {
 
+    @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmedPasswordTextField: UITextField!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,14 +23,44 @@ class FirstRegisterViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    
+    @IBAction func nextButtonPressed(_ sender: Any) {
+        
+        if loginTextField.text == "" || passwordTextField.text == "" || confirmedPasswordTextField.text == "" {
+            // Empty fields
+            return
+        }
+        else{
+            if passwordTextField.text == confirmedPasswordTextField.text{
+                self.performSegue(withIdentifier: "goToSecondRegisterView", sender: self)
+                passwordTextField.text = ""
+                confirmedPasswordTextField.text = ""
+                
+            }
+            else{
+                // Different passwords
+                return
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToSecondRegisterView"{
+            let secondRegisterVC = segue.destination as! SecondRegisterViewController
+            
+            secondRegisterVC.userName = loginTextField.text!
+            secondRegisterVC.password = passwordTextField.text!
+        }
+    }
+    
 }
