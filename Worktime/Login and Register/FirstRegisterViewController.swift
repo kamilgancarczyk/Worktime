@@ -32,6 +32,7 @@ class FirstRegisterViewController: UIViewController {
         
         if loginTextField.text == "" || passwordTextField.text == "" || confirmedPasswordTextField.text == "" {
             // Empty fields
+            // Add popups
             return
         }
         else{
