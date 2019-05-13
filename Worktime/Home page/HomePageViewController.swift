@@ -33,10 +33,12 @@ class HomePageViewController: UIViewController, UITextFieldDelegate{
     var dayBoolLabel : Bool = false
     var lengthTimeBoolLabel : Bool = false
     
+    var ref: DatabaseReference!
+    var email : String = ""
     
     
     private let monthSource = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"]
-    private let freeDaySource = ["WŚ - święto", "WN - niedziela", "W5 – wolne z tytułu pięciodniowego tygodnia pracy", "CH - choroba", "UO – urlop okolicznościowy", "UW – urlop wypoczynkowy", "UB – urlop bezpłatny", "UM – urlop macierzyński", "UR – urlop rodzicielski", "UWych – urlop wychowawczy", "ZW – zwolnienie na wezwanie sądowe/urzędowe"]
+    private let freeDaySource = ["Dzień wolny", "WŚ - święto", "WN - niedziela", "W5 – wolne z tytułu pięciodniowego tygodnia pracy", "CH - choroba", "UO – urlop okolicznościowy", "UW – urlop wypoczynkowy", "UB – urlop bezpłatny", "UM – urlop macierzyński", "UR – urlop rodzicielski", "WY – urlop wychowawczy", "ZW – zwolnienie na wezwanie sądowe/urzędowe"]
     private let daySource = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
     private let timeLengthSource = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"]
     
@@ -45,6 +47,12 @@ class HomePageViewController: UIViewController, UITextFieldDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        FirebaseApp.configure()
+        
+        
+        //ref.setValue(email)
+        
         
         pickerView.dataSource = self
         pickerView.delegate = self
@@ -60,10 +68,7 @@ class HomePageViewController: UIViewController, UITextFieldDelegate{
 //        datepickerView?.addTarget(self, action: #selector(HomePageViewController.timeChangedForStartDuty(datePicker:)), for: .valueChanged)
 //
 //        datepickerView?.addTarget(self, action: #selector(HomePageViewController.timeChangedForEndDuty(datePicker:)), for: .valueChanged)
-
-        
-
-        
+    
         workHoursStartTextField.inputView = datepickerView
         workHoursEndTextField.inputView = datepickerView
         dutyStartTextField.inputView = datepickerView
@@ -88,7 +93,28 @@ class HomePageViewController: UIViewController, UITextFieldDelegate{
         let tapView = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
         view.addGestureRecognizer(tapView)
         
+        print("Email is: \(email)")
+        
     }
+    
+    @IBAction func saveData(_ sender: Any) {
+        saveData()
+    }
+    
+    func saveData() {
+        let currentUser = Auth.auth().currentUser?.uid
+        ref = Database.database().reference().child(currentUser!)
+        let key = ref.childByAutoId().key
+        
+        let workDay = ["id": key,
+                       "Start pracy": workHoursStartTextField.text! as String,
+                       "Koniec pracy": workHoursEndTextField.text! as String,
+                       "Start dyzuru": dutyStartTextField.text! as String,
+                       "Koniec dyzuru": dutyEndTextFields.text! as String]
+        
+        ref.child(monthLabel.text!).child(dayLabel.text!).setValue(workDay)
+    }
+    
 
     @objc func timeChanged(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
@@ -117,7 +143,7 @@ class HomePageViewController: UIViewController, UITextFieldDelegate{
     }
     
     @objc func tapOnFreeDay(gestureReconizer: UITapGestureRecognizer) {
-        print("Free day")
+        print(freedayLabel.text!)
         pickerView.isHidden = false
         freedayBoolLabel = true
         monthBoolLabel = false

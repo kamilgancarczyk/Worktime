@@ -22,6 +22,15 @@ class LoginViewController: UIViewController {
     }
     
     //
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToHomePage"{
+//            let tabBarPageVC = segue.destination as! TabBarViewController
+            let tabCtrl: UITabBarController = segue.destination as! UITabBarController
+            let homePageVC = tabCtrl.viewControllers![0] as! HomePageViewController
+            homePageVC.email = emailTextField.text!
+        }
+    }
 
     @IBAction func loginButtonPressed(_ sender: Any) {
         
@@ -31,7 +40,7 @@ class LoginViewController: UIViewController {
                 print(error!)
             } else {
                 print("Login successed")
-                self.emailTextField.text = ""
+                //self.emailTextField.text = ""
                 self.passwordTextField.text = ""
                 self.performSegue(withIdentifier: "goToHomePage", sender: self)
             }
