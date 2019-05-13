@@ -28,6 +28,7 @@ class CustomTextField : UITextField {
         textColor = UIColor.white
         
         
+        
         font = UIFont(name: "HelveticaNeue-Light", size: 20)
         autocorrectionType = .no
         clipsToBounds = true

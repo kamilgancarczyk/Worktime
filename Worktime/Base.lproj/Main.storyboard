@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundLogin" translatesAutoresizingMaskIntoConstraints="NO" id="Rv9-T5-lLK">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896.00000000000182"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nGE-hx-tFw" userLabel="Top Container">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="363"/>
@@ -84,6 +84,9 @@
                                             <constraint firstAttribute="height" constant="40" id="OSA-Lz-W1b"/>
                                         </constraints>
                                         <state key="normal" title="Login"/>
+                                        <connections>
+                                            <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L5F-UP-blf"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -115,6 +118,9 @@
                                         <state key="normal" title="Forgot password">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="forgotPasswordPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DXv-lc-0jP"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ipb-sM-wGn" customClass="CustomButton" customModule="Worktime" customModuleProvider="target">
                                         <rect key="frame" x="122" y="196.5" width="170" height="30"/>
@@ -157,6 +163,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="HP6-Jy-BWs" id="KXi-es-QZg"/>
+                        <outlet property="passwordTextField" destination="GJ4-V1-IhH" id="gDo-qp-7rG"/>
+                        <segue destination="ET4-jk-9Bl" kind="show" identifier="goToHomePage" id="4MP-7E-fo7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -218,7 +229,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDM-3g-rUY" userLabel="Center Container">
                                 <rect key="frame" x="87" y="363" width="240" height="170"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pM0-cz-7Oh">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pM0-cz-7Oh">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="1CA-e5-pcT"/>
@@ -309,7 +320,7 @@
                     </view>
                     <connections>
                         <outlet property="confirmedPasswordTextField" destination="3Zo-fu-aWl" id="vD2-Pk-Ipr"/>
-                        <outlet property="loginTextField" destination="pM0-cz-7Oh" id="NPp-5G-EhD"/>
+                        <outlet property="emailTextField" destination="pM0-cz-7Oh" id="NPp-5G-EhD"/>
                         <outlet property="passwordTextField" destination="AhR-52-h6m" id="l6w-g4-VOG"/>
                         <segue destination="TJv-xd-R8C" kind="show" identifier="goToSecondRegisterView" id="6UE-Al-BfY"/>
                     </connections>
@@ -394,16 +405,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swn-QT-lht">
-                                        <rect key="frame" x="0.0" y="130" width="240" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="keK-WY-eqC"/>
-                                            <constraint firstAttribute="width" constant="240" id="yKd-nv-7dl"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -413,14 +414,11 @@
                                     <constraint firstAttribute="trailing" secondItem="PH9-dQ-gHZ" secondAttribute="trailing" id="acp-YT-kkF"/>
                                     <constraint firstItem="PH9-dQ-gHZ" firstAttribute="centerX" secondItem="MQK-w9-HqJ" secondAttribute="centerX" id="g7J-JN-jWc"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="gfc-zU-uXW"/>
-                                    <constraint firstAttribute="bottom" secondItem="Swn-QT-lht" secondAttribute="bottom" id="iXf-hx-392"/>
                                     <constraint firstAttribute="height" constant="170" id="lW3-xE-yYV"/>
                                     <constraint firstItem="LEW-Sh-5a1" firstAttribute="top" secondItem="MQK-w9-HqJ" secondAttribute="top" id="le8-tV-Flz"/>
                                     <constraint firstAttribute="trailing" secondItem="LEW-Sh-5a1" secondAttribute="trailing" id="ncT-wV-zUG"/>
-                                    <constraint firstAttribute="trailing" secondItem="Swn-QT-lht" secondAttribute="trailing" id="ndI-AT-Vun"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="otS-PG-Rjp"/>
                                     <constraint firstItem="LEW-Sh-5a1" firstAttribute="leading" secondItem="MQK-w9-HqJ" secondAttribute="leading" id="pGl-KS-be2"/>
-                                    <constraint firstItem="Swn-QT-lht" firstAttribute="leading" secondItem="MQK-w9-HqJ" secondAttribute="leading" id="rwF-6m-mX6"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCe-rI-53d" userLabel="Bottom Container">
@@ -466,7 +464,6 @@
                         <viewLayoutGuide key="safeArea" id="A0l-NH-lVk"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="Swn-QT-lht" id="TSO-wB-eFu"/>
                         <outlet property="firstnameTextField" destination="LEW-Sh-5a1" id="hik-kU-xDf"/>
                         <outlet property="lastnameTextField" destination="PH9-dQ-gHZ" id="kTb-3C-BT1"/>
                     </connections>
@@ -474,6 +471,134 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dEQ-rF-6HC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1877" y="-366"/>
+        </scene>
+        <!--Home Page View Controller-->
+        <scene sceneID="h8j-O6-Ovg">
+            <objects>
+                <viewController storyboardIdentifier="HomePageViewController" id="ET4-jk-9Bl" userLabel="Home Page View Controller" customClass="HomePageViewController" customModule="Worktime" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dFN-4I-Krn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Iz-76-XE4">
+                                <rect key="frame" x="292" y="824" width="122" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="ET4-jk-9Bl" eventType="touchUpInside" id="oK8-G2-uRx"/>
+                                </connections>
+                            </button>
+                            <pickerView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mBM-yY-nTc">
+                                <rect key="frame" x="0.0" y="600" width="414" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Miesiąc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWd-KE-YqF">
+                                <rect key="frame" x="58" y="84" width="125" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dzień wolny" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daH-kH-ILb">
+                                <rect key="frame" x="78" y="147" width="254" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K3P-6w-vBu">
+                                <rect key="frame" x="70" y="346" width="101" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Koniec" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f7X-vT-F2r">
+                                <rect key="frame" x="233" y="346" width="101" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Godziny pracy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miV-zd-dXl">
+                                <rect key="frame" x="121" y="293" width="172" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Godziny dyżuru" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5y-8O-S1y">
+                                <rect key="frame" x="121" y="407" width="172" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M03-t2-L01">
+                                <rect key="frame" x="70" y="451" width="101" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Koniec" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uHx-b8-gMF">
+                                <rect key="frame" x="233" y="451" width="101" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Długość dnia pracy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kJ-99-tm7">
+                                <rect key="frame" x="111" y="195" width="188" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dzień" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pkc-hz-Boa">
+                                <rect key="frame" x="252" y="87" width="82" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQb-Nu-41n">
+                                <rect key="frame" x="212" y="241" width="27" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Godzina" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVa-zi-MTK">
+                                <rect key="frame" x="121" y="239" width="82" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JWk-iB-dqv"/>
+                    </view>
+                    <connections>
+                        <outlet property="dayLabel" destination="Pkc-hz-Boa" id="Xx2-dm-owY"/>
+                        <outlet property="dutyEndTextFields" destination="uHx-b8-gMF" id="XGJ-mN-3Ka"/>
+                        <outlet property="dutyHoursLabel" destination="E5y-8O-S1y" id="4l2-U2-u8m"/>
+                        <outlet property="dutyStartTextField" destination="M03-t2-L01" id="NZr-OY-sAE"/>
+                        <outlet property="freedayLabel" destination="daH-kH-ILb" id="ucc-oH-FkQ"/>
+                        <outlet property="hoursLabel" destination="RQb-Nu-41n" id="gVt-eO-ghR"/>
+                        <outlet property="lengthOfWorkDayLabel" destination="7kJ-99-tm7" id="YHu-gi-f8p"/>
+                        <outlet property="lengthTimeLabel" destination="OVa-zi-MTK" id="ngJ-yu-QGX"/>
+                        <outlet property="monthLabel" destination="PWd-KE-YqF" id="7xC-Dg-Kbx"/>
+                        <outlet property="pickerView" destination="mBM-yY-nTc" id="gkV-rF-4xc"/>
+                        <outlet property="workHoursEndTextField" destination="f7X-vT-F2r" id="PRa-aj-df4"/>
+                        <outlet property="workHoursLabel" destination="miV-zd-dXl" id="6rp-Yy-0XQ"/>
+                        <outlet property="workHoursStartTextField" destination="K3P-6w-vBu" id="hbh-Hd-5qd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GJP-tm-eLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="973.91304347826099" y="309.375"/>
         </scene>
     </scenes>
     <resources>

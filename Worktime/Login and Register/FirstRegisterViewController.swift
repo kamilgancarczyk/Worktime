@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class FirstRegisterViewController: UIViewController {
 
-    @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmedPasswordTextField: UITextField!
     
@@ -30,7 +31,7 @@ class FirstRegisterViewController: UIViewController {
     
     @IBAction func nextButtonPressed(_ sender: Any) {
         
-        if loginTextField.text == "" || passwordTextField.text == "" || confirmedPasswordTextField.text == "" {
+        if emailTextField.text == "" || passwordTextField.text == "" || confirmedPasswordTextField.text == "" {
             // Empty fields
             // Add popups
             return
@@ -42,7 +43,7 @@ class FirstRegisterViewController: UIViewController {
                 confirmedPasswordTextField.text = ""
                 
             }
-            else{
+            else {
                 // Different passwords
                 return
             }
@@ -59,7 +60,7 @@ class FirstRegisterViewController: UIViewController {
         if segue.identifier == "goToSecondRegisterView"{
             let secondRegisterVC = segue.destination as! SecondRegisterViewController
             
-            secondRegisterVC.userName = loginTextField.text!
+            secondRegisterVC.email = emailTextField.text!
             secondRegisterVC.password = passwordTextField.text!
         }
     }
